@@ -60,15 +60,22 @@ export default function Home() {
 
       <header className="hero" id="top">
         <div className="hero-paper">
-          <div className="inventory"><span>ДЕЛО № 01/2026</span><span className="red-note">ХРАНИТЬ ВЕЧНО</span></div>
+          <div className="inventory">
+            <span><i>ИНВ. НОМЕР</i>01–2026–КЗ</span>
+            <span><i>КАТЕГОРИЯ</i>КУЛЬТУРА</span>
+            <span><i>ХРАНЕНИЕ</i>ПОСТОЯННО</span>
+            <span><i>ЛИСТОВ</i>02</span>
+            <span><i>ФОРМА</i>КЗ–ЛК</span>
+            <span><i>ДАТА ЗАВЕДЕНИЯ</i>2026</span>
+          </div>
           <div className="hero-grid">
             <div className="hero-main">
-              <p className="eyebrow">ЛЕКЦИОННЫЙ КУРС ТИНЫ КАНДЕЛАКИ</p>
+              <p className="eyebrow">АРХИВ КУЛЬТУРНЫХ ПОДМЕН / ЛЕКЦИОННЫЙ КУРС</p>
               <h1 className="glitch" data-text="КОД ЗАМЕНЫ">КОД<br />ЗАМЕНЫ</h1>
-              <p className="hero-lead">О том, как нам подменяют красоту, историю и смысл</p>
+              <p className="hero-lead">Лекционный курс Тины Канделаки</p>
             </div>
             <div className="hero-aside" aria-hidden="true">
-              <span>АРХИВНАЯ КОПИЯ</span><b>01</b><span>РАССЕКРЕЧЕНО</span>
+              <span>АРХИВНАЯ КОПИЯ</span><b>КЗ</b><span>ФОНД 01 / ОПИСЬ 26</span>
             </div>
           </div>
           <div className="replacement" aria-label="искусство заменено алгоритмом, история — сценарием, выбор — кодом">
