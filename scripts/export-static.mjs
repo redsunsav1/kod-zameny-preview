@@ -18,10 +18,10 @@ const output = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Код замены — лекционный курс Тины Канделаки</title>
-  <meta name="description" content="Лекционный курс о том, как нам подменяют красоту, историю и смысл.">
-  <meta property="og:title" content="Код замены — лекционный курс Тины Канделаки">
-  <meta property="og:description" content="Увидеть подмену. Понять механику. Переписать код.">
+  <title>Код замены — живая лекция Тины Канделаки в Ростове-на-Дону</title>
+  <meta name="description" content="Офлайн-лекция Тины Канделаки о культурных подменах. Оставьте заявку на участие.">
+  <meta property="og:title" content="Код замены — живая лекция в Ростове-на-Дону">
+  <meta property="og:description" content="Тина Канделаки. Один вечер, два лекционных блока и живой разговор.">
   <meta property="og:image" content="./og.png">
   <style>${css}</style>
 </head>
@@ -57,6 +57,11 @@ ${main}
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
+  });
+
+  document.querySelector('.application-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    event.currentTarget.outerHTML = '<div class="form-success" role="status"><span class="stamp">ЗАЯВКА ПРИНЯТА</span><h3>Вы в списке<br>ожидания</h3><p>Мы свяжемся с вами, когда дата и площадка будут подтверждены.</p></div>';
   });
 </script>
 </body>

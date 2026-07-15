@@ -3,21 +3,19 @@
 import { useEffect, useState } from "react";
 
 const LINKS = {
-  site: "https://example.com/buy?utm_source=landing&utm_medium=site",
-  platform: "https://example.com/platform?utm_source=landing&utm_medium=platform",
-  telegram: "https://t.me/example?utm_source=landing&utm_medium=telegram",
+  telegram: "https://t.me/example?utm_source=landing&utm_medium=event",
   socialTelegram: "https://t.me/example",
   socialInstagram: "https://instagram.com/example",
   socialVk: "https://vk.com/example",
 };
 
 const faq = [
-  ["Когда я получу доступ?", "Сразу после оплаты: письмо со ссылкой и инструкцией придёт на указанную почту в течение пяти минут."],
-  ["Как долго открыт курс?", "Записи останутся доступны в личном кабинете в течение 12 месяцев с момента покупки."],
-  ["Можно смотреть в записи?", "Да. Обе лекции записаны в высоком качестве, их можно смотреть в удобное время с любого устройства."],
-  ["На какой платформе проходит обучение?", "Курс размещён на защищённой образовательной платформе. Для входа понадобится только email."],
-  ["Есть ли дополнительные материалы?", "В расширенном тарифе — конспекты, список источников и визуальная хронология ключевых подмен."],
-  ["Можно вернуть оплату?", "Да, в порядке и сроки, указанные в публичной оферте. Напишите менеджеру — он поможет оформить обращение."],
+  ["Как попасть на мероприятие?", "Оставьте заявку на сайте. Менеджер свяжется с вами, подтвердит наличие мест и расскажет об условиях участия."],
+  ["Где пройдёт встреча?", "В Ростове-на-Дону. Точную площадку и схему проезда мы отправим подтверждённым участникам отдельным письмом."],
+  ["Когда состоится лекция?", "Дата согласовывается. После заявки вы первыми получите приглашение с датой, временем и адресом события."],
+  ["Можно прийти вдвоём?", "Да. Укажите двух гостей в заявке или сообщите менеджеру, что хотите забронировать два места рядом."],
+  ["Будет ли запись?", "Это живое офлайн-событие. Публикация полной записи не планируется — ценность встречи в присутствии и обсуждении."],
+  ["Что входит в участие?", "Два лекционных блока, перерыв, сессия вопросов и ответов и комплект материалов участника."],
 ];
 
 function track(goal: string) {
@@ -33,6 +31,7 @@ function Stamp({ children, pale = false }: { children: React.ReactNode; pale?: b
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const reveal = new IntersectionObserver(
@@ -53,9 +52,9 @@ export default function Home() {
       <nav className="sticky-nav" aria-label="Навигация по странице">
         <a href="#top" className="nav-logo">КОД ЗАМЕНЫ</a>
         <div className="nav-links">
-          <a href="#program">Программа</a><a href="#author">Автор</a><a href="#access">Доступ</a>
+          <a href="#program">Программа</a><a href="#author">Автор</a><a href="#access">Для кого</a>
         </div>
-        <a className="mini-cta" href="#tariffs">ПОЛУЧИТЬ ДОСТУП</a>
+        <a className="mini-cta" href="#application">ОСТАВИТЬ ЗАЯВКУ</a>
       </nav>
 
       <header className="hero" id="top">
@@ -63,16 +62,16 @@ export default function Home() {
           <div className="inventory">
             <span><i>ИНВ. НОМЕР</i>01–2026–КЗ</span>
             <span><i>КАТЕГОРИЯ</i>КУЛЬТУРА</span>
-            <span><i>ХРАНЕНИЕ</i>ПОСТОЯННО</span>
-            <span><i>ЛИСТОВ</i>02</span>
-            <span><i>ФОРМА</i>КЗ–ЛК</span>
-            <span><i>ДАТА ЗАВЕДЕНИЯ</i>2026</span>
+            <span><i>ГОРОД</i>РОСТОВ-НА-ДОНУ</span>
+            <span><i>МЕСТ</i>ОГРАНИЧЕНО</span>
+            <span><i>ФОРМАТ</i>ОФЛАЙН</span>
+            <span><i>СТАТУС</i>ПРИЁМ ЗАЯВОК</span>
           </div>
           <div className="hero-grid">
             <div className="hero-main">
-              <p className="eyebrow">АРХИВ КУЛЬТУРНЫХ ПОДМЕН / ЛЕКЦИОННЫЙ КУРС</p>
+              <p className="eyebrow">АРХИВ КУЛЬТУРНЫХ ПОДМЕН / ЖИВАЯ ЛЕКЦИЯ</p>
               <h1 className="glitch" data-text="КОД ЗАМЕНЫ">КОД<br />ЗАМЕНЫ</h1>
-              <p className="hero-lead">Лекционный курс Тины Канделаки</p>
+              <p className="hero-lead">Тина Канделаки · Ростов-на-Дону · офлайн</p>
             </div>
             <div className="hero-aside" aria-hidden="true">
               <span>АРХИВНАЯ КОПИЯ</span><b>КЗ</b><span>ФОНД 01 / ОПИСЬ 26</span>
@@ -82,8 +81,8 @@ export default function Home() {
             <span><s>искусство</s> алгоритм</span><i>·</i><span><s>история</s> сценарий</span><i>·</i><span><s>выбор</s> код</span>
           </div>
           <div className="hero-bottom">
-            <a className="cta" href="#tariffs" onClick={() => track("cta_hero")}>ПОЛУЧИТЬ ДОСТУП <span>↘</span></a>
-            <p>2 лекции<br />доступ сразу после оплаты</p>
+            <a className="cta" href="#application" onClick={() => track("cta_hero")}>ОСТАВИТЬ ЗАЯВКУ <span>↘</span></a>
+            <p>Один вечер · два блока<br />количество мест ограничено</p>
           </div>
           <div className="hero-stamp"><Stamp>ЗАМЕНЕНО</Stamp></div>
         </div>
@@ -106,21 +105,21 @@ export default function Home() {
       </section>
 
       <section className="program section" id="program">
-        <div className="section-head reveal"><div><p className="section-code">РАЗДЕЛ 03 / ОПИСЬ ДЕЛА</p><h2>Два тома.<br />Одна система.</h2></div><Stamp>РАССЕКРЕЧЕНО</Stamp></div>
+        <div className="section-head reveal"><div><p className="section-code">РАЗДЕЛ 03 / ПРОГРАММА ВЕЧЕРА</p><h2>Два акта.<br />Один разговор.</h2></div><Stamp>ЖИВОЕ СОБЫТИЕ</Stamp></div>
         <div className="volumes">
           <article className="volume reveal">
             <span className="volume-number">I</span><div className="fold" />
-            <p className="eyebrow">ТОМ I · ЭСТЕТИКА</p><h3>Красота<br />и уродство</h3>
+            <p className="eyebrow">АКТ I · ЭСТЕТИКА</p><h3>Красота<br />и уродство</h3>
             <p className="volume-lead">Как за 70 лет символ красоты стал символом распада.</p>
             <ul><li>9 версий «Тайной вечери» — от классики до Олимпиады-2024</li><li>Де Кунинг и рынок, где уродливое стоит сотни миллионов</li><li>Механика превращения уродливого в модное</li></ul>
-            <p className="duration">ХРОНОМЕТРАЖ · ~1,5 ЧАСА</p>
+            <p className="duration">ЖИВАЯ ЛЕКЦИЯ · ~60 МИНУТ</p>
           </article>
           <article className="volume reveal">
             <span className="volume-number">II</span><div className="fold" />
-            <p className="eyebrow">ТОМ II · ИСТОРИЯ</p><h3>Фальсификация<br />истории</h3>
+            <p className="eyebrow">АКТ II · ИСТОРИЯ</p><h3>Фальсификация<br />истории</h3>
             <p className="volume-lead">Как переписывают биографии, эпохи и наше представление о себе.</p>
             <ul><li>Иван Грозный: рождение образа кровавого тирана</li><li>Екатерина Великая и чужие легенды о русской власти</li><li>Маргарет Тэтчер: кто и зачем редактирует прошлое</li></ul>
-            <p className="duration">ХРОНОМЕТРАЖ · ~1,5 ЧАСА</p>
+            <p className="duration">ЛЕКЦИЯ + ВОПРОСЫ · ~75 МИНУТ</p>
           </article>
         </div>
       </section>
@@ -136,7 +135,7 @@ export default function Home() {
             <div className="dossier-row"><span>ИМЯ</span><b>Тина</b></div>
             <div className="dossier-row"><span>РОД ЗАНЯТИЙ</span><b>Журналист, продюсер, автор</b></div>
             <div className="dossier-row"><span>СПЕЦИАЛИЗАЦИЯ</span><b>Медиа, культура, общество</b></div>
-            <p className="bio">Более двадцати лет Тина Канделаки работает внутри медиасистемы — там, где создаются образы, смыслы и массовые представления. В этом курсе она разбирает механику подмен не как сторонний наблюдатель, а как человек, знающий устройство индустрии изнутри.</p>
+            <p className="bio">Более двадцати лет Тина Канделаки работает внутри медиасистемы — там, где создаются образы, смыслы и массовые представления. На живой встрече она разбирает механику подмен не как сторонний наблюдатель, а как человек, знающий устройство индустрии изнутри.</p>
             <blockquote>«Чтобы защитить свой выбор, нужно сначала понять, кто и как пытается сделать его за тебя».</blockquote>
           </div>
         </div>
@@ -154,14 +153,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tariffs section" id="tariffs">
-        <div className="section-head reveal"><div><p className="section-code">РАЗДЕЛ 06 / УСЛОВИЯ ДОСТУПА</p><h2>Выберите<br />уровень допуска</h2></div><p className="head-note">Доступ к материалам<br />сразу после оплаты</p></div>
-        <div className="tariff-grid">
-          <article className="tariff reveal"><p className="eyebrow">ДОПУСК · БАЗОВЫЙ</p><h3>Слушатель</h3><div className="price">4 900 <small>₽</small></div><ul><li>Две лекции в записи</li><li>Доступ на 12 месяцев</li><li>Список источников</li></ul><a href={LINKS.site} onClick={() => track("cta_tariff_site")}>ОПЛАТИТЬ НА САЙТЕ</a></article>
-          <article className="tariff tariff--featured reveal"><Stamp>РЕКОМЕНДОВАНО</Stamp><p className="eyebrow">ДОПУСК · РАСШИРЕННЫЙ</p><h3>Исследователь</h3><div className="price">7 900 <small>₽</small></div><ul><li>Всё из базового тарифа</li><li>Авторские конспекты</li><li>Визуальная хронология</li><li>Дополнительные материалы</li></ul><a href={LINKS.platform} onClick={() => track("cta_tariff_platform")}>ОПЛАТИТЬ НА ПЛАТФОРМЕ</a></article>
-          <article className="tariff reveal"><p className="eyebrow">ДОПУСК · ПЕРСОНАЛЬНЫЙ</p><h3>Соучастник</h3><div className="price">ПО ЗАПРОСУ</div><ul><li>Полный пакет материалов</li><li>Закрытая встреча</li><li>Приоритетная поддержка</li></ul><a href={LINKS.telegram} onClick={() => track("cta_tariff_tg")}>НАПИСАТЬ МЕНЕДЖЕРУ</a></article>
+      <section className="application section" id="application">
+        <div className="section-head reveal"><div><p className="section-code">РАЗДЕЛ 06 / ЗАЯВКА НА УЧАСТИЕ</p><h2>Получить<br />приглашение</h2></div><Stamp>РОСТОВ-НА-ДОНУ</Stamp></div>
+        <div className="application-layout reveal">
+          <div className="event-brief">
+            <p className="eyebrow">КАРТОЧКА СОБЫТИЯ</p>
+            <dl>
+              <div><dt>ФОРМАТ</dt><dd>Живая лекция</dd></div>
+              <div><dt>ГОРОД</dt><dd>Ростов-на-Дону</dd></div>
+              <div><dt>ДАТА</dt><dd>Будет объявлена</dd></div>
+              <div><dt>ПРОДОЛЖИТЕЛЬНОСТЬ</dt><dd>Около 3 часов</dd></div>
+              <div><dt>УЧАСТИЕ</dt><dd>По предварительной заявке</dd></div>
+            </dl>
+            <p className="event-note">После заявки менеджер подтвердит наличие мест и отправит детали события.</p>
+          </div>
+          {submitted ? (
+            <div className="form-success" role="status"><Stamp>ЗАЯВКА ПРИНЯТА</Stamp><h3>Вы в списке<br />ожидания</h3><p>Мы свяжемся с вами, когда дата и площадка будут подтверждены.</p></div>
+          ) : (
+            <form className="application-form" onSubmit={(event) => { event.preventDefault(); track("application_submit"); setSubmitted(true); }}>
+              <label className="field"><span>ИМЯ И ФАМИЛИЯ</span><input name="name" autoComplete="name" required placeholder="Как к вам обращаться" /></label>
+              <label className="field"><span>ТЕЛЕФОН</span><input name="phone" type="tel" autoComplete="tel" required placeholder="+7 900 000-00-00" /></label>
+              <label className="field"><span>ЭЛЕКТРОННАЯ ПОЧТА</span><input name="email" type="email" autoComplete="email" required placeholder="name@example.ru" /></label>
+              <label className="field"><span>КОЛИЧЕСТВО ГОСТЕЙ</span><select name="guests" defaultValue="1"><option value="1">Одно место</option><option value="2">Два места</option></select></label>
+              <label className="consent"><input type="checkbox" required /><span>Согласен с политикой конфиденциальности и обработкой персональных данных</span></label>
+              <button className="form-submit" type="submit">ОТПРАВИТЬ ЗАЯВКУ <span>↘</span></button>
+              <p className="form-meta">ЗАЯВКА НЕ ЯВЛЯЕТСЯ ОПЛАТОЙ · МЕНЕДЖЕР СВЯЖЕТСЯ С ВАМИ</p>
+            </form>
+          )}
         </div>
-        <p className="delivery-note">ДОСТУП ПРИХОДИТ НА ПОЧТУ В ТЕЧЕНИЕ 5 МИНУТ</p>
       </section>
 
       <section className="faq section">
@@ -175,7 +194,7 @@ export default function Home() {
       </section>
 
       <section className="final-cta">
-        <div className="final-inner reveal"><p className="section-code">ЗАКЛЮЧЕНИЕ / ДЕЛО НЕ ЗАКРЫТО</p><h2>Код можно<br /><em>переписать.</em></h2><p>Начните с себя.</p><a className="cta" href="#tariffs" onClick={() => track("cta_final")}>ПОЛУЧИТЬ ДОСТУП <span>↘</span></a><div className="signature">ДЕЛО № 01/2026 · ПОДПИСАНО: Т. КАНДЕЛАКИ</div></div>
+        <div className="final-inner reveal"><p className="section-code">РОСТОВ-НА-ДОНУ / ЖИВАЯ ВСТРЕЧА</p><h2>Увидеть.<br /><em>Обсудить.</em></h2><p>Присоединяйтесь к разговору.</p><a className="cta" href="#application" onClick={() => track("cta_final")}>ОСТАВИТЬ ЗАЯВКУ <span>↘</span></a><div className="signature">ДЕЛО № 01/2026 · КОЛИЧЕСТВО МЕСТ ОГРАНИЧЕНО</div></div>
       </section>
 
       <footer>
