@@ -11,6 +11,7 @@ if (!mainMatch) throw new Error("Rendered <main> was not found");
 
 const main = mainMatch[0]
   .replaceAll("<!-- -->", "")
+  .replaceAll('src="/images/', 'src="./images/')
   .replace(/class="([^"]*\breveal\b[^"]*)"/g, 'class="$1 is-visible"');
 
 const output = `<!doctype html>
@@ -72,4 +73,5 @@ const docs = path.join(root, "docs");
 fs.mkdirSync(docs, { recursive: true });
 fs.writeFileSync(path.join(docs, "index.html"), output);
 fs.copyFileSync(path.join(root, "public/og.png"), path.join(docs, "og.png"));
+fs.cpSync(path.join(root, "public/images"), path.join(docs, "images"), { recursive: true });
 fs.writeFileSync(path.join(docs, ".nojekyll"), "");

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element -- plain images keep the standalone GitHub Pages export portable */
 
 import { useEffect, useState } from "react";
 
@@ -87,6 +88,10 @@ export default function Home() {
               <h1 className="title-reveal" aria-label="Код замены"><span data-text="КОД">КОД</span><span data-text="ЗАМЕНЫ">ЗАМЕНЫ</span></h1>
               <p className="hero-lead">Тина Канделаки · Ростов-на-Дону · офлайн</p>
             </div>
+            <figure className="hero-photo">
+              <img src="/images/tina-hero.jpg" alt="Тина Канделаки в красном костюме" />
+              <figcaption>СПИКЕР / ТИНА КАНДЕЛАКИ · ФОТО 01</figcaption>
+            </figure>
             <div className="hero-aside" aria-hidden="true">
               <span>АРХИВНАЯ КОПИЯ</span><b>КЗ</b><span>ФОНД 01 / ОПИСЬ 26</span>
             </div>
@@ -123,6 +128,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="visual-dossier section" aria-label="Фотографии спикера">
+        <div className="visual-grid reveal">
+          <figure className="visual-main">
+            <img src="/images/tina-editorial.jpg" alt="Портрет Тины Канделаки в чёрном костюме" loading="lazy" />
+            <figcaption>АРХИВ / ПОРТРЕТ СПИКЕРА · 2026</figcaption>
+          </figure>
+          <div className="visual-copy">
+            <p className="section-code">ВСТРЕЧА БЕЗ МОНТАЖА</p>
+            <h2>Не запись.<br />Не пересказ.<br /><em>Живой разговор.</em></h2>
+            <p>Событие создаётся для присутствия в зале: чтобы услышать аргументы целиком, задать свой вопрос и продолжить разговор после лекции.</p>
+            <figure className="visual-secondary">
+              <img src="/images/tina-candid.jpg" alt="Тина Канделаки с чашкой перед выступлением" loading="lazy" />
+              <figcaption>ПЕРЕД ЭФИРОМ / ЛИЧНЫЙ АРХИВ</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <section className="program section" id="program">
         <div className="section-head reveal"><div><p className="section-code">РАЗДЕЛ 03 / ПРОГРАММА ВЕЧЕРА</p><h2>Два акта.<br />Один разговор.</h2></div><Stamp>ЖИВОЕ СОБЫТИЕ</Stamp></div>
         <div className="volumes">
@@ -147,9 +170,7 @@ export default function Home() {
       <section className="author section" id="author">
         <p className="section-code">РАЗДЕЛ 04 / ЛИЧНОЕ ДЕЛО</p>
         <div className="profile reveal">
-          <div className="portrait" role="img" aria-label="Место для портрета Тины Канделаки">
-            <div className="portrait-lines" /><span>ФОТОГРАФИЯ<br />БУДЕТ ДОБАВЛЕНА</span><small>АРХИВ · 2026</small>
-          </div>
+          <figure className="portrait"><img src="/images/tina-profile.jpg" alt="Официальный портрет Тины Канделаки" loading="lazy" /><figcaption>ЛИЧНОЕ ДЕЛО · ФОТО 02 / 2026</figcaption></figure>
           <div className="dossier">
             <div className="dossier-row"><span>ФАМИЛИЯ</span><b>Канделаки</b></div>
             <div className="dossier-row"><span>ИМЯ</span><b>Тина</b></div>
