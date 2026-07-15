@@ -32,8 +32,10 @@ function Stamp({ children, pale = false }: { children: React.ReactNode; pale?: b
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const readyTimer = window.setTimeout(() => setReady(true), 1650);
     const reveal = new IntersectionObserver(
       entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("is-visible")),
       { threshold: 0.12 },
@@ -44,11 +46,23 @@ export default function Home() {
     const nav = document.querySelector(".sticky-nav");
     const navObserver = hero && nav ? new IntersectionObserver(([entry]) => nav.classList.toggle("is-shown", !entry.isIntersecting), { threshold: 0.1 }) : null;
     if (hero && navObserver) navObserver.observe(hero);
-    return () => { reveal.disconnect(); navObserver?.disconnect(); };
+    return () => { window.clearTimeout(readyTimer); reveal.disconnect(); navObserver?.disconnect(); };
   }, []);
 
   return (
-    <main>
+    <main className={ready ? "site-ready" : ""}>
+      <div className="site-loader" aria-hidden="true">
+        <div className="loader-frame">
+          <div className="loader-top"><span>ДЕЛО № 01/2026</span><span>АРХИВ КУЛЬТУРНЫХ ПОДМЕН</span><span>РОСТОВ-НА-ДОНУ</span></div>
+          <div className="loader-center">
+            <p>ИДЕНТИФИКАЦИЯ МАТЕРИАЛА / КЗ–ЛК</p>
+            <div className="loader-title"><span>КОД</span><span>ЗАМЕНЫ</span></div>
+            <div className="loader-progress"><i /></div>
+            <div className="loader-status"><span>РАССЕКРЕЧИВАНИЕ ДЕЛА</span><b>000 → 100</b></div>
+          </div>
+          <div className="loader-bottom"><span>ФОНД 01 · ОПИСЬ 26</span><span>ПОДГОТОВКА ДОКУМЕНТОВ</span></div>
+        </div>
+      </div>
       <nav className="sticky-nav" aria-label="Навигация по странице">
         <a href="#top" className="nav-logo">КОД ЗАМЕНЫ</a>
         <div className="nav-links">

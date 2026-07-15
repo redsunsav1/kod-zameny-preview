@@ -5,7 +5,7 @@ const root = process.cwd();
 const sourcePath = process.argv[2] || "/tmp/kz-live.html";
 const html = fs.readFileSync(sourcePath, "utf8");
 const css = fs.readFileSync(path.join(root, "app/globals.css"), "utf8");
-const mainMatch = html.match(/<main>[\s\S]*?<\/main>/);
+const mainMatch = html.match(/<main[^>]*>[\s\S]*?<\/main>/);
 
 if (!mainMatch) throw new Error("Rendered <main> was not found");
 
@@ -28,6 +28,7 @@ const output = `<!doctype html>
 <body>
 ${main}
 <script>
+  setTimeout(() => document.querySelector('main')?.classList.add('site-ready'), 1650);
   const hero = document.querySelector('.hero');
   const nav = document.querySelector('.sticky-nav');
   const updateNav = () => nav?.classList.toggle('is-shown', scrollY > (hero?.offsetHeight || 600) * .75);
