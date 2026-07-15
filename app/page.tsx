@@ -70,7 +70,7 @@ export default function Home() {
           <div className="hero-grid">
             <div className="hero-main">
               <p className="eyebrow">АРХИВ КУЛЬТУРНЫХ ПОДМЕН / ЖИВАЯ ЛЕКЦИЯ</p>
-              <h1 className="glitch" data-text="КОД ЗАМЕНЫ">КОД<br />ЗАМЕНЫ</h1>
+              <h1 className="title-reveal" aria-label="Код замены"><span data-text="КОД">КОД</span><span data-text="ЗАМЕНЫ">ЗАМЕНЫ</span></h1>
               <p className="hero-lead">Тина Канделаки · Ростов-на-Дону · офлайн</p>
             </div>
             <div className="hero-aside" aria-hidden="true">
@@ -88,18 +88,23 @@ export default function Home() {
         </div>
       </header>
 
+      <section className="event-bar" aria-label="Главная информация о событии">
+        <div><span>ГОРОД</span><strong>Ростов-на-Дону</strong></div>
+        <div><span>ФОРМАТ</span><strong>Живая лекция</strong></div>
+        <div><span>ПРОДОЛЖИТЕЛЬНОСТЬ</span><strong>Около 3 часов</strong></div>
+        <div><span>УЧАСТИЕ</span><strong>По заявке</strong></div>
+      </section>
+
       <section className="manifest section" id="manifest">
         <div className="section-code">ЛИСТ 02 / МАНИФЕСТ</div>
         <div className="manifest-sheet reveal">
           <p className="margin-note">ПОМЕТКА:<br />ЧИТАТЬ<br />ВНИМАТЕЛЬНО</p>
-          <div>
-            <h2>Мы живём в мире,<br />подчинённом <em>алгоритмам</em></h2>
-            <div className="manifest-copy">
-              <p>Они решают за нас, что нам нравится, что считать красивым, кому верить и что помнить. Мы называем это выбором — но всё чаще выбираем лишь из того, что нам показали.</p>
-              <p>Уродливое становится прекрасным. Святое — низменным. История превращается в сценарий, написанный теми, кому выгодно наше беспамятство.</p>
-              <p className="manifest-big">Это не случайность.<br />Это <span>код замены</span>.</p>
-              <p>Матрица, к которой нас подключают без согласия. Чтобы выйти из неё, сначала нужно увидеть швы.</p>
-            </div>
+          <h2>Мы живём в мире,<br />подчинённом <em>алгоритмам</em></h2>
+          <div className="manifest-copy">
+            <p>Они решают за нас, что нам нравится, что считать красивым, кому верить и что помнить. Мы называем это выбором — но всё чаще выбираем лишь из того, что нам показали.</p>
+            <p>Уродливое становится прекрасным. Святое — низменным. История превращается в сценарий, написанный теми, кому выгодно наше беспамятство.</p>
+            <p className="manifest-big">Это не случайность.<br />Это <span>код замены</span>.</p>
+            <p>Матрица, к которой нас подключают без согласия. Чтобы выйти из неё, сначала нужно увидеть швы.</p>
           </div>
         </div>
       </section>
@@ -122,6 +127,7 @@ export default function Home() {
             <p className="duration">ЛЕКЦИЯ + ВОПРОСЫ · ~75 МИНУТ</p>
           </article>
         </div>
+        <div className="program-cta reveal"><div><p className="eyebrow">ОДИН ВЕЧЕР · ЖИВОЙ РАЗГОВОР</p><strong>Продолжим обсуждение после лекции на сессии вопросов и ответов.</strong></div><a className="cta" href="#application" onClick={() => track("cta_program")}>ОСТАВИТЬ ЗАЯВКУ <span>↘</span></a></div>
       </section>
 
       <section className="author section" id="author">
